@@ -1,5 +1,5 @@
 # PROJETO VOYAGER
-### A biblioteca de Conhecimento do Universo
+### A biblioteca de Conhecimento do Universo 🪐
 Muito prazer, me chamo Davi Alexandre de Souza Hilário e este é meu projeto individual, **Voyager**, a biblioteca que busca
 reunir o máximo de informações sobre o cosmos e compartilha-la com o público.<br>
 <br>
