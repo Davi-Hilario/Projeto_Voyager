@@ -1,0 +1,8 @@
+.navBar{
+    width: 100%;
+    background-color: #0B0013;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid white; */
+}
