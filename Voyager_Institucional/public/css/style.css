@@ -3,13 +3,73 @@ body, html{
     padding: 0;
     box-sizing: border-box;
     background-color: #0B0013;
+    font-family: arial;
     /* width: 100vw; */
     /* height: 100vh; */
 }
 
 .container{
     width: 90%;
-    height: 100%;
+    height: 90%;
     display: flex;
-    border: 2px solid red;
+    /* border: 2px solid red; */
+}
+
+/* Barra de Navegação */
+
+.navBar{
+    width: 100%;
+    background-color: #0B0013;
+    height: 15vh;
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    /* border: 2px solid white; */
+}
+
+.navBar .container{
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.navBar ul{
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    letter-spacing: 3px;
+    list-style: none;
+    align-items: center;
+    /* border: 1px solid white; */
+}
+
+.navBar a{
+    text-decoration: none;
+    color: #E9E0F5;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+/* Logo */
+
+.navBar .logoNavbar{
+    width: 80px;
+    height: 80px;
+}
+
+/* Botões */
+
+.btn{
+    padding: 10px;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 2px;
+    color: #E9E0F5;
+    font-weight: bold;
+    font-size: 20px;
+    background-image: linear-gradient(to right bottom, #120022, #32005F, #43007e);
+}
+
+.btn-cadastro{
+    width: 13vw;
+    height: 8vh;
 }
