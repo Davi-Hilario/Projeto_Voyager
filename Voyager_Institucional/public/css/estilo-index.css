@@ -48,6 +48,60 @@
 
 .telaValores .container{
     justify-content: right;
+    align-items: center;
     /* border: 1px solid red; */
     /* align-items: baseline; */
+}
+
+.blocoValores{
+    height: 70%;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.blocoValores h1{
+    color: #E9E0F5;
+    font-weight: bolder;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 2px;
+    font-size: 50px;
+}
+.blocoIcones{
+    width: 90%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* background-color: red; */
+}
+.linhaIcones{
+    width: 90%;
+    height: 40%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    /* background-color: green; */
+}
+.linhaIcones img{
+    width: 7vw;
+    height: 14vh;
+    /* background-color: yellow; */
+}
+.icone{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    height: auto;
+}
+
+.icone span{
+    color:#E9E0F5;
+    font-size: 30px;
+    font-weight: bold;
 }
