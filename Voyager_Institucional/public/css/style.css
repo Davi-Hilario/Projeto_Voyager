@@ -67,6 +67,7 @@ body, html{
     font-weight: bold;
     font-size: 20px;
     background-image: linear-gradient(to right bottom, #120022, #32005F, #43007e);
+    cursor:pointer;
 }
 
 .btn-cadastro{

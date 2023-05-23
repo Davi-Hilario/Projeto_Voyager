@@ -7,6 +7,14 @@
     display: flex;
     justify-content: center;
 }
+.tela h1{
+    color: #E9E0F5;
+    font-weight: bolder;
+    padding: 0;
+    margin: 0;
+    letter-spacing: 2px;
+    font-size: 50px;
+}
 
 /* banner */
 
@@ -61,14 +69,6 @@
     align-items: center;
     justify-content: space-around;
 }
-.blocoValores h1{
-    color: #E9E0F5;
-    font-weight: bolder;
-    padding: 0;
-    margin: 0;
-    letter-spacing: 2px;
-    font-size: 50px;
-}
 .blocoIcones{
     width: 90%;
     height: 75%;
@@ -105,3 +105,257 @@
     font-size: 30px;
     font-weight: bold;
 }
+
+/* Objetivos */
+
+.telaObjetivos{
+    background-image: url(../assets/img/fundoObjetivos.png);
+}
+
+.telaObjetivos .container{
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.area-info-objetivos{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+}
+
+.objetivos-coluna-esquerda{
+    width: 65%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 1px solid green; */
+}
+.objetivos-coluna-direita{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid green; */
+}
+.objetivos-coluna-direita img{
+    width: 95%;
+    height: auto;
+    border: 1px sold red;
+    transform: rotate(-35deg);
+}
+
+.linha-objetivos{
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border: 2px solid #A974DB;
+    border-radius: 5px;
+    width: 85%;
+    transition: .5s ease;
+}
+.linha-objetivos:hover{
+    background-color: #A974DB;
+    box-shadow: 10px 10px 1px #663892;
+    transition: .5s ease;
+    cursor: default;
+}
+
+.linha-objetivos:hover img{
+    transform: translateX(-50%);
+    transition: .5s ease;
+}
+
+.linha-objetivos img{
+    transform: translateX(-40%);
+    width: 75px;
+    height: auto;
+    transition: .5s ease-out;
+}
+
+.linha-objetivos p{
+    transform: translateX(-3%);
+    color: #E9E0F5;
+    font-weight: 600;
+    text-align: left;
+}
+
+.linha-objetivos-meio{
+    transform: translateX(6%);
+}
+
+/* Tela Descubra */
+
+.telaDescubra{
+    background-image: url(../assets/img/fundoObjetivos.png);
+}
+
+.telaDescubra .container{
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.telaDescubra .container h1{
+    font-size: 80px;
+    letter-spacing: 15px;
+}
+
+.container-cards-descubra{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    /* border: 2px solid yellow; */
+}
+
+.card-descubra{
+    width: 25%;
+    height: 70%;
+    background-color:#0B0013;
+    border: 2px solid #A974DB;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    transition: .5s all;
+}
+
+.card-descubra h3{
+    color: #E9E0F5;
+    font-size: 25px;
+    letter-spacing: 5px;
+}
+
+.card-descubra img{
+    height: 150px;
+    width: 150px;
+    transition: .5s all;
+}
+
+.card-descubra .btn{
+    border-radius: 10px;
+    width: 60%;
+    height: 60px;
+}
+
+.card-descubra:hover{
+    background-image: linear-gradient(to right bottom, #120022, #32005F, #43007e);
+    box-shadow: 5px 5px 50px #663892;
+    transition: .5s all;
+}
+
+.card-descubra:hover img{
+    transform: translateY(-60%);
+    transition: .5s all;
+}
+
+.card-descubra:hover .btn{
+    background-image: none;
+    background-color: #A974DB;
+}
+
+/* Tela Gráficos */
+
+.telaGraficos{
+    background-image: url(../assets/img/fundoObjetivos.png);
+}
+
+.telaGraficos .container{
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.area-graficos{
+    width: 100%;
+    height: 75%;
+    display: flex;
+    justify-content: space-around;
+    /* border: 1px solid red; */
+}
+
+.area-grafico-esquerda{
+    width: 65%;
+    height: 100%;
+    /* border: 1px solid yellow; */
+}
+
+.area-grafico-direita{
+    width: 30%;
+    height: 100%;
+    /* border: 1px solid yellow; */
+}
+
+/* Tela Footer */
+
+.telaFooter{
+    background-image: url(../assets/img/fundoObjetivos.png);
+}
+
+.telaFooter .container{
+    justify-content: space-evenly;
+    align-items: flex-end;
+}
+
+.card-footer{
+    width: 30%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: #E9E0F5;
+}
+
+.card-footer ul{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    height: 100%;
+    list-style: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.formulario-contato{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: #663892;
+    padding: 15px;
+    align-items: center;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.formulario-contato .container{
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2%;
+}
+
+.bloco-formulario{
+    width: 100%;
+}
+
+.formulario-contato .container textarea{
+    resize: none;
+    width: 100%;
+}
+.formulario-contato .container input{
+    width: 100%;
+    height: 35px;
+}
+
+.formulario-contato .btn{
+    width: 60%;
+    align-self: center;
+}
+
