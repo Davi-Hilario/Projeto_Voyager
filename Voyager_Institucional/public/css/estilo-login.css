@@ -1,0 +1,94 @@
+.tela{
+    width: 100%;
+    height: 100vh;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: top;
+    display: flex;
+}
+
+.telaLogin{
+    width: 100vw;
+    height: 100vh;
+    background-image: url(../assets/img/fundoLogin.png);
+    display: flex;
+    align-items: center;
+}
+
+.telaFormulario{
+    width: 30%;
+    height: 100%;
+    background-color: #6B5CA5;
+    justify-content: center;
+}
+
+.telaFormulario .container{
+    width: 90%;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center
+}
+
+.telaImagem{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.telaImagem h1{
+    color:#E9E0F5;
+    font-size: 60px;
+    font-weight: bold;
+    letter-spacing: 15px;
+}
+
+.bloco-login{
+    width: 70%;
+    height: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* border: 1px solid red; */
+}
+
+.bloco-login .label{
+    font-size: 25px;
+    color: #E9E0F5;
+    font-weight: bold;
+    margin-left: 3%;
+}
+
+.bloco-login .alerta-erro{
+    color: #FF736D;
+    font-weight: bold;
+}
+
+.input{
+    height: 60px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    /* border: 2px solid red; */
+}
+
+.input input{
+    width: 100%;
+    height: 50px;
+    border: none;
+}
+
+.input img{
+    width: 50px;
+    height: 50px;
+}
+
+.btn-login{
+    width: 50%;
+    height: 50px;
+    font-size: 25px;
+    letter-spacing: 4px;
+    border: none;
+    color: #6B5CA5;
+    
+}

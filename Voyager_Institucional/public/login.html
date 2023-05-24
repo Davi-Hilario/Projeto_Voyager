@@ -1,12 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Entrar</title>
+    <link rel="stylesheet" href="css/estilo-login.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-    
+    <div class="telaLogin tela">
+        <div class="telaFormulario tela">
+            <div class="container">
+                <div class="bloco-login">
+                    <div class="bloco-input">
+                        <span class="label">Email</span><br>
+                        <div class="input">
+                            <input type="text" id="txtEmail">
+                            <img src="assets/img/iconElegante.png" alt="">
+                        </div>
+                        <br>
+                        <span class="alerta-erro">Email Inválido!</span>
+                    </div>
+                    <div class="bloco-input">
+                        <span class="label">Senha</span><br>
+                        <div class="input">
+                            <input type="password" id="txtSenha">
+                            <img src="assets/img/iconOrganizado.png" alt="">
+                        </div>
+                        <br>
+                        <span class="alerta-erro">Senha Inválida!</span>
+                    </div>
+                </div>
+
+                <button onclick="cadastrar()" class="btn-login">Entrar</button>
+                <a href="esqueceuSenha.html">Esqueceu a Senha?</a>
+            </div>
+        </div>
+        <div class="telaImagem tela">
+            <h1>Voyager</h1>
+        </div>
+    </div>
 </body>
+
 </html>
