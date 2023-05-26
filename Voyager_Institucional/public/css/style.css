@@ -34,8 +34,9 @@ body, html{
 
 .navBar ul{
     width: 80%;
+    height: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     letter-spacing: 3px;
     list-style: none;
     align-items: center;
@@ -47,6 +48,12 @@ body, html{
     color: #E9E0F5;
     font-weight: bold;
     font-size: 20px;
+    transition: .5s;
+}
+
+.navBar a:hover{
+    color: rgb(95, 0, 219);
+    transition: .5s;
 }
 
 /* Logo */
@@ -54,6 +61,12 @@ body, html{
 .navBar .logoNavbar{
     width: 80px;
     height: 80px;
+    transition: .5s ease-out;
+}
+
+.navBar .logoNavbar:hover{
+    transform: rotate(45deg);
+    transition: .5s ease;
 }
 
 /* Botões */

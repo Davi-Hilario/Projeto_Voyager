@@ -10,7 +10,6 @@
 .telaLogin{
     width: 100vw;
     height: 100vh;
-    background-image: url(../assets/img/fundoLogin.png);
     display: flex;
     align-items: center;
 }
