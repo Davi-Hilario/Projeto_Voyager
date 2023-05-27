@@ -18,24 +18,25 @@
                     <div class="bloco-input">
                         <span class="label">Email</span><br>
                         <div class="input">
-                            <input type="text" id="txtEmail">
-                            <img src="assets/img/iconElegante.png" alt="">
+                            <input type="text" id="txtEmail" placeholder="Seu Email">
+                            <img src="assets/icon/iconeLogin.png" alt="">
                         </div>
                         <br>
-                        <span class="alerta-erro">Email Inválido!</span>
+                        <span class="alerta-erro" id="alertaEmail">Email Inválido!</span>
                     </div>
                     <div class="bloco-input">
                         <span class="label">Senha</span><br>
                         <div class="input">
-                            <input type="password" id="txtSenha">
-                            <img src="assets/img/iconOrganizado.png" alt="">
+                            <input type="password" id="txtSenha" placeholder="Sua Senha">
+                            <img src="assets/icon/iconeCadeado.png" alt="">
                         </div>
                         <br>
-                        <span class="alerta-erro">Senha Inválida!</span>
+                        <span class="alerta-erro" id="alertaSenha">Senha Inválida!</span>
                     </div>
+                    <div class="linha"></div>
                 </div>
 
-                <button onclick="cadastrar()" class="btn-login">Entrar</button>
+                <button onclick="logar()" class="btn-login">Entrar</button>
                 <a href="esqueceuSenha.html">Esqueceu a Senha?</a>
             </div>
         </div>
@@ -45,3 +46,56 @@
 </body>
 
 </html>
+<script>
+    function logar() {
+        alertaEmail.style = 'visibility:hidden;'
+        alertaSenha.style = 'visibility:hidden;'
+        var email = txtEmail.value
+        var senha = txtSenha.value
+        var erro = false
+
+        if (email == "" || email.indexOf('@') == -1 || email.indexOf('.') == -1) {
+            alertaEmail.style = 'visibility:visible;'
+            erro = true
+        }
+        if (senha == "") {
+            alertaSenha.style = 'visibility:visible;'
+            erro = true
+        }
+        if (erro == false) {
+            fetch("/usuarios/login", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    emailServer: email,
+                    senhaServer: senha
+                })
+            }).then(function (resposta) {
+                if (resposta.ok) {
+                    resposta.json().then(json => {
+                        sessionStorage.EMAIL_USUARIO = json.emailUsuario;
+                        sessionStorage.NOME_USUARIO = json.nomeUsuario;
+                        sessionStorage.ID_USUARIO = json.idUsuario;
+
+                        setTimeout(function () {
+                            window.location = "index.html";
+                        }, 1000);
+                    });
+
+                } else {
+                    alert("Houve um erro ao tentar realizar o login!");
+                    resposta.text().then(texto => {
+                        console.error(texto);
+                    });
+                }
+
+            }).catch(function (erro) {
+                console.log(erro);
+            })
+
+            return false;
+        }
+    }
+</script>
