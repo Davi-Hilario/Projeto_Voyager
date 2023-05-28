@@ -57,7 +57,18 @@ function cadastrar(req, res) {
     }
 }
 
+function consultarDados(req, res) {
+    usuarioModel.consultarDados()
+        .then(function (resultado) {
+            res.json(resultado)
+        }).catch(function(erro){
+            console.log('Erro ao consultar os dados!' + erro)
+            res.status(500).json(erro.sqlMessage);
+        })
+}
+
 module.exports = {
     cadastrar,
-    login
+    login,
+    consultarDados
 }

@@ -274,24 +274,26 @@
 
 .area-graficos{
     width: 100%;
-    height: 75%;
+    height: 50vh;
     display: flex;
     justify-content: space-around;
     /* border: 1px solid red; */
 }
 
-.area-grafico-esquerda{
-    width: 65%;
-    height: 100%;
-    /* border: 1px solid yellow; */
+.area-grafico-barra{
 }
 
-.area-grafico-direita{
-    width: 30%;
-    height: 100%;
-    /* border: 1px solid yellow; */
+.area-grafico-rosca{
 }
 
+.blocoTextoGrafico{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #E9E0F5;
+    font-size: 25px;
+    font-weight: bold;
+}
 /* Tela Footer */
 
 .telaFooter{

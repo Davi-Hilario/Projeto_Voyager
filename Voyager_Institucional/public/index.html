@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="icon" href="assets/img/logoVoyager.png">s -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/estilo-index.css">
     <script src="script.js"></script>
@@ -119,13 +120,22 @@
     <div class="telaGraficos tela">
         <div class="container">
             <h1>Votos dos Usuários</h1>
-            <div class="area-graficos">
-                <div class="area-grafico-esquerda">
-                    <canvas id="myChart"></canvas>
+            <br><br><br>
+            <div class="area-graficos area-grafico-barra">
+                <canvas id="graficoPlanetas"></canvas>
+                <div class="blocoTextoGrafico">
+                    <p>testando escrever coisas</p>
                 </div>
-                <div class="area-grafico-direita">
-                    <canvas id="myChart2"></canvas>
+            </div>
+            <br><br><br>
+            <div class="area-graficos area-grafico-rosca">
+                <div class="blocoTextoGrafico">
+                    <p>
+                        <span id="qtdVotosDia"></span>pessoas votaram em Dia como sendo o favorito <br><br><br>
+                        <span id="qtdVotosNoite"></span>pessoas votaram em Noite como sendo o favorito 
+                    </p>
                 </div>
+                <canvas id="graficoDiaNoite"></canvas>
             </div>
 
         </div>
@@ -180,47 +190,96 @@
 
 </html>
 <script>
-    const ctx = document.getElementById('myChart');
+    (function consultarDados() {
+        fetch("/usuarios/consultarDados", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(JSON.stringify(json))
+                    var registro = json[0]
+                    console.log(registro)
+                    labelsGraficoPlanetas.push
+                        (
+                            'Mercúrio', 'Vênus', 'Terra', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Netuno'
+                        );
+                    dadosGraficoPlanetas.datasets[0].data.push
+                        (
+                            registro.Mercurio,
+                            registro.Venus,
+                            registro.Terra,
+                            registro.Marte,
+                            registro.Jupiter,
+                            registro.Saturno,
+                            registro.Urano,
+                            registro.Netuno
+                        );
 
-    new Chart(ctx, {
+                    labelsGraficoDiaNoite.push('Dia', 'Noite');
+                    dadosGraficoDiaNoite.datasets[0].data.push(registro.Dia, registro.Noite);
+
+                    qtdVotosDia.innerHTML = `${registro.Dia} `;
+                    qtdVotosNoite.innerHTML = `${registro.Noite} `;
+
+                    graficoPlanetas.update()
+                    graficoDiaNoite.update()
+
+                });
+            } else {
+                alert("Houve um erro ao tentar realizar a consulta!");
+                resposta.text().then(texto => {
+                    console.error(texto);
+                });
+            }
+        }).catch(function (erro) {
+            console.log("Erro ao consultar os dados! " + erro)
+        })
+    })()
+
+    // Grafico Planeta Favorito
+
+    let labelsGraficoPlanetas = [];
+
+    let dadosGraficoPlanetas = {
+        labels: labelsGraficoPlanetas,
+        datasets: [{
+            label: 'Planetas Favoritos',
+            data: [],
+            backgroundColor: '#A974DB'
+        }]
+    };
+
+    const configGraficoPlanetas = {
         type: 'bar',
-        data: {
-            labels: ['Mercúrio', 'Vênus', 'Terra', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Netuno'],
-            datasets: [{
-                label: 'Planetas Favoritos',
-                data: [18, 19, 35, 33, 38, 45, 23, 12],
-                borderWidth: 1,
-                backgroundColor: '#A974DB'
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+        data: dadosGraficoPlanetas,
+    };
 
-    const ctx2 = document.getElementById('myChart2');
+    let graficoPlanetas = new Chart(
+        document.getElementById(`graficoPlanetas`),
+        configGraficoPlanetas
+    );
+    // GraficonDIa ou Noite
+    let labelsGraficoDiaNoite = [];
 
-    new Chart(ctx2, {
+    let dadosGraficoDiaNoite = {
+        labels: labelsGraficoDiaNoite,
+        datasets: [{
+            label: 'Preferem Dia ou Noite?',
+            data: [],
+            backgroundColor: ['#A974DB', '#6B5CA5']
+        }]
+    };
+
+    const configGraficoDiaNoite = {
         type: 'doughnut',
-        data: {
-            labels: ['Dia', 'Noite', 'Ambos'],
-            datasets: [{
-                label: 'Dia ou Noite?',
-                backgroundColor: ['#A974DB', '#6B5CA5', '#32005F'],
-                data: [74, 60, 21],
-                borderWidth: 1
-            }]
-        },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
+        data: dadosGraficoDiaNoite,
+    };
+
+    let graficoDiaNoite = new Chart(
+        document.getElementById(`graficoDiaNoite`),
+        configGraficoDiaNoite
+    );
 </script>
