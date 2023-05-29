@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Cadastro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/estilo-cadastro.css">
+</head>
+
+<body>
+    <div class="telaEtapa1 tela">
+        <div class="areaTexto coluna">
+            <p>Vamos Começar!</p>
+            <img src="" alt="">
+        </div>
+        <div class="formularioEtapa1 formulario coluna">
+            <div id="etapa1">
+                
+            </div>
+            <br><br>
+            <div class="blocoForm blocoBotoes">
+                <button class="btn" id="btnVoltar" onclick="voltar()" style="display: none;">Voltar</button>
+                <button class="btn" id="btnContinuar" onclick="continuar()">Continuar</button>
+                <button class="btn" id="btnCadastrar" onclick="cadastrar()" style="display: none;">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    var contador = 0
+    function continuar() {
+        if (contador == 0) {
+            contador++
+            btnVoltar.style = 'display:block;'
+
+        } else if (contador == 1) {
+            contador++
+        } else if (contador == 2) {
+            contador++
+        } else if (contador == 3) {
+            contador++
+            btnCadastrar.style = 'display:block;'
+            btnContinuar.style = 'display:none;'
+        }
+    }
+
+    function voltar() {
+        if (contador == 1) {
+            contador--
+            btnVoltar.style = 'display:none;'
+        } else if (contador == 2) {
+            contador--
+        } else if (contador == 3) {
+            contador--
+        } else if (contador == 4) {
+            contador--
+            btnContinuar.style = 'display:block;'
+            btnCadastrar.style = 'display:none;'
+        }
+    }
+</script>
