@@ -22,3 +22,14 @@ insert into Usuario values
 	(default, 'Leandra Almeida', '1976-05-11', 'Jupiter', 'Dia', 'lele@gmail.com','lele1234');
     
 select * from Usuario;
+
+create table quiz
+(
+	idQuiz int primary key auto_increment,
+    qtdAcertos int,
+	qtdErros int,
+    fkUsuario int,
+    foreign key (fkUsuario) references Usuario(idUsuario)
+);
+
+drop table quiz;
