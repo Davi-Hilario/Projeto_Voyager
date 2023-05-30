@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/estilo-quiz.css">
 </head>
+
 <body>
     <div class="navBar">
         <div class="container">
@@ -20,5 +23,146 @@
             <button class="btn btn-cadastro" id="btnCadastrar" onclick="location.href='cadastro.html'">Cadastro</button>
         </div>
     </div>
+    <br><br>
+    <div class="telaQuiz tela">
+        <h1 id="titulo">Quiz do Sistema Solar</h1>
+        <h2 id="subtitulo">Venha testar o quanto você sabe!</h2>
+        <div class="respostas" id="resposta">
+            <button class="btn btn-comecar" onclick="iniciarQuiz()">Começar Quiz</button>
+        </div>
+    </div>
 </body>
+
 </html>
+<script>
+    var index = 0
+    var acertos = 0
+    var erros = 0
+    const perguntas =
+        [
+            'Qual o menor planeta do sistema solar?',
+            'Qual o planeta com a maior quantidade de luas descobertas?',
+            'Seu nome vem de um Deus romano, conhecido na mitoligia grega como Zeus',
+            'Corpos celestes que utilizam da fusão nuclear para gerarem energia',
+            'Planeta muito conhecido por sua coloração avermelhada',
+            'Movimento realizado pela Terra em torno do Sol',
+            'Planeta cujo eixo está inclinado em aproximadamente 98 graus',
+            'A alternativa que possui todos os planetas como rochosos é:',
+            'A alternativa que possui todos os planetas como gasosos é:',
+            'O planeta mais quente do sistema solar é:'
+        ]
+
+    function iniciarQuiz() {
+        index++
+        titulo.innerHTML = `Pergunta ${index}`
+        subtitulo.innerHTML = `${perguntas[index - 1]}`
+        resposta.innerHTML =
+            `
+            <button class="btn btn-resposta" onclick="verificarResposta('certo')">Mercúrio</button>
+            <button class="btn btn-resposta" onclick="verificarResposta('errado')">Saturno</button>
+            <button class="btn btn-resposta" onclick="verificarResposta('errado')">Urano</button>
+            <button class="btn btn-resposta" onclick="verificarResposta('errado')">Júpiter</button>
+        `
+    }
+    function verificarResposta(res) {
+        index++
+        titulo.innerHTML = `Pergunta ${index}`
+        subtitulo.innerHTML = `${perguntas[index - 1]}`
+
+        if (res == 'certo') {
+            acertos++
+        } else {
+            erros++
+        }
+
+        if (index == 2) {
+            resposta.innerHTML =
+                `
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Urano</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Netuno</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Júpiter</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('certo')">Saturno</button>
+            `
+        } else if (index == 3) {
+            resposta.innerHTML =
+                `
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Sol</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Lua</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('certo')">Júpiter</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Marte</button>
+            `
+        } else if (index == 4) {
+            resposta.innerHTML =
+                `
+                <button class="btn btn-resposta" onclick="verificarResposta('certo')">Estrelas</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Planetas</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Meteoros</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Cometas</button>
+            `
+        } else if (index == 5) {
+            resposta.innerHTML =
+                `
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Vênus</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('certo')">Marte</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Mercúrio</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Terra</button>
+            `
+        } else if (index == 6) {
+            resposta.innerHTML =
+                `
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Convergência</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Rotação</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('certo')">Translação</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Divergência</button>
+            `
+        } else if (index == 7) {
+            resposta.innerHTML =
+                `
+                <button class="btn btn-resposta" onclick="verificarResposta('certo')">Urano</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Vênus</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Terra</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Mercúrio</button>
+            `
+        } else if (index == 8) {
+            resposta.innerHTML =
+                `
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Júpiter, Saturno, Urano e Netuno</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('certo')">Mercúrio, Vênus, Terra e Marte</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Terra, Marte, Júpiter e Saturno</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Plutão, Mercúrio, Vênus, Terra e Marte</button>
+            `
+        } else if (index == 9) {
+            resposta.innerHTML =
+                `
+                <button class="btn btn-resposta" onclick="verificarResposta('certo')">Júpiter, Saturno, Urano e Netuno</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Mercúrio, Vênus, Terra e Marte</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Terra, Marte, Júpiter e Saturno</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Plutão, Mercúrio, Vênus, Terra e Marte</button>
+            `
+        } else if (index == 10) {
+            resposta.innerHTML =
+                `
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Mercúrio</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Terra</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('certo')">Vênus</button>
+                <button class="btn btn-resposta" onclick="verificarResposta('errado')">Marte</button>
+            `
+        } else if (index == 11) {
+            finalizarQuiz()
+        }
+    }
+    function finalizarQuiz() {
+        alert(`Você acertou ${acertos} e errou ${erros}`)
+        titulo.innerHTML = `Você Finalizou o Quiz!`
+        subtitulo.innerHTML = `Veja seus resultados!`
+        resposta.innerHTML =
+        `
+            <canvas id="graficoQuiz"></canvas>
+        `
+        enviarDados()
+    }
+    
+    function enviarDados(){
+        
+    }
+</script>
