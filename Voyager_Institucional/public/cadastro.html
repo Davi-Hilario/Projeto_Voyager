@@ -11,20 +11,114 @@
 </head>
 
 <body>
-    <div class="telaEtapa1 tela">
-        <div class="areaTexto coluna">
-            <p>Vamos Começar!</p>
-            <img src="" alt="">
-        </div>
-        <div class="formularioEtapa1 formulario coluna">
-            <div id="etapa1">
-                
+    <div class="telaEtapa1 tela" id="telaInfo">
+        <h1 class="titulo">Um pouco sobre você</h1>
+        <div class="container">
+            <div class="formulario-Etapa1 form">
+                <div class="bloco-form">
+                    <span>Seu Nome</span><br>
+                    <input type="text" id="txtNome" value="Davi Alexandre">
+                </div>
+                <div class="bloco-form">
+                    <span>Seu Email</span><br>
+                    <input type="email" id="txtEmail" value="davi.hilario@sptech.school">
+                </div>
+                <div class="bloco-form">
+                    <span>Sua Data de Nascimento</span><br>
+                    <input type="date" id="txtDataNasc" value="2004-08-23">
+                </div>
+                <button class="btn" onclick="verificarEtapa1()">Prosseguir</button>
             </div>
-            <br><br>
-            <div class="blocoForm blocoBotoes">
-                <button class="btn" id="btnVoltar" onclick="voltar()" style="display: none;">Voltar</button>
-                <button class="btn" id="btnContinuar" onclick="continuar()">Continuar</button>
-                <button class="btn" id="btnCadastrar" onclick="cadastrar()" style="display: none;">Cadastrar</button>
+        </div>
+    </div>
+    <div class="telaEtapa2 tela" id="telaPlaneta" style="display: none;">
+        <h1 class="titulo">Qual o seu planeta favorito?</h1>
+        <div class="container">
+            <div class="bloco-imagem">
+                <img src="assets/img/mercurio.png" alt="Mercúrio" onclick="verificarPlaneta('Mercúrio')"
+                style="margin-top: 5rem;">
+                <br>
+                <span>Mercúrio</span>
+            </div>
+            <div class="bloco-imagem">
+                <img src="assets/img/imgVenus.png" alt="Vênus" onclick="verificarPlaneta('Vênus')">
+                <br>
+                <span>Vênus</span>
+            </div>
+            <div class="bloco-imagem">
+                <img src="assets/img/terra.png" alt="Terra" onclick="verificarPlaneta('Terra')"
+                style="margin-top: -5rem;">
+                <br>
+                <span>Terra</span>
+            </div>
+            <div class="bloco-imagem">
+                <img src="assets/img/marte.png" alt="Marte" onclick="verificarPlaneta('Marte')"
+                style="margin-top: -10rem;">
+                <br>
+                <span>Marte</span>
+            </div>
+            <div class="bloco-imagem">
+                <img src="assets/img/jupiter.png" alt="Júpiter" onclick="verificarPlaneta('Júpiter')"
+                style="margin-top: -10rem;">
+                <br>
+                <span>Júpiter</span>
+            </div>
+            <div class="bloco-imagem">
+                <img src="assets/img/saturno.png" alt="Saturno" onclick="verificarPlaneta('Saturno')"
+                style="margin-top: -5rem;">
+                <br>
+                <span>Saturno</span>
+            </div>
+            <div class="bloco-imagem">
+                <img src="assets/img/urano.png" alt="Urano" onclick="verificarPlaneta('Urano')">
+                <br>
+                <span>Urano</span>
+            </div>
+            <div class="bloco-imagem">
+                <img src="assets/img/netuno.png" alt="Netuno" onclick="verificarPlaneta('Netuno')"
+                style="margin-top: 5rem;">
+                <br>
+                <span>Netuno</span>
+            </div>
+        </div>
+    </div>
+    <div class="telaEtapa3 tela" id="telaDiaNoite" style="display: none;">
+        <h1 class="titulo">Qual você prefere?</h1>
+        <div class="containerDia colunaTela3">
+            <div class="container">
+                <div class="sol img-diaNoite"></div>
+                <button class="btn btn-diaNoite" onclick="verificarDiaNoite('Dia')">Dia</button>
+            </div>
+        </div>
+        <div class="containerNoite colunaTela3">
+            <div class="container">
+                <div class="lua img-diaNoite"></div>
+                <button class="btn btn-diaNoite" onclick="verificarDiaNoite('Noite')">Noite</button>
+            </div>
+        </div>
+    </div>
+    <div class="telaEtapa4 tela" id="telaSenha" style="display: none;">
+        <h1 class="titulo">Finalizando</h1>
+        <div class="container">
+            <div class="formulario-Etapa4 form">
+                <div class="bloco-form">
+                    <span>Senha</span><br>
+                    <input type="password" id="txtSenha" oninput="verificarNivel()">
+                    <div class="linhaNivel" id="nivelDiv">
+                        <div class="nivel" id="nivel1"></div>
+                        <div class="nivel" id="nivel2"></div>
+                        <div class="nivel" id="nivel3"></div>
+                    </div>
+                </div>
+                <div class="bloco-form">
+                    <span>Confirmar Senha</span><br>
+                    <input type="password" id="txtConfirmarSenha">
+                </div>
+                <p>
+                    Não iremos compartilhar
+                    a sua senha com terceiros!
+                </p>
+                <button class="btn" onclick="verificarSenha()">Cadastrar</button>
             </div>
         </div>
     </div>
@@ -32,35 +126,172 @@
 
 </html>
 <script>
-    var contador = 0
-    function continuar() {
-        if (contador == 0) {
-            contador++
-            btnVoltar.style = 'display:block;'
 
-        } else if (contador == 1) {
-            contador++
-        } else if (contador == 2) {
-            contador++
-        } else if (contador == 3) {
-            contador++
-            btnCadastrar.style = 'display:block;'
-            btnContinuar.style = 'display:none;'
+    let nome = ""
+    let email = ""
+    let dataNasc = ""
+    let planetaFav = ""
+    let diaNoite = ""
+    let senha = ""
+
+    let contador = 0;
+    function prosseguir() {
+        if (contador == 0) {
+            telaInfo.style = 'display:none;'
+            telaPlaneta.style = 'display:flex;'
+        } if (contador == 1) {
+            telaPlaneta.style = 'display:none;'
+            telaDiaNoite.style = 'display:flex;'
+        } if (contador == 2) {
+            telaDiaNoite.style = 'display:none;'
+            telaSenha.style = 'display:flex;'
+        }
+        contador++
+    }
+
+    function verificarEtapa1(){
+        nome = txtNome.value
+        email = txtEmail.value
+        dataNasc = txtDataNasc.value
+        // console.log((dataNasc.split('-'))[0])
+        let erro = false
+
+        // Verificações do Nome
+        if(nome == ""){
+            txtNome.placeholder = "Digite seu nome!"
+            erro = true
+        }else if(nome.length <= 2){
+            txtNome.value = ''
+            txtNome.placeholder = "O nome deve conter pelo menos 3 caracteres!"
+            erro = true
+        }
+
+        // Verificações do email
+        if(email == ""){
+            txtEmail.placeholder = "Digite o Email!"
+            erro = true
+        }else if((email.indexOf('@') == -1) || (email.indexOf('.') == -1)){
+            txtEmail.value = ''
+            txtEmail.placeholder = "Email Inválido! Reveja o conteúdo!"
+            erro = true
+        }
+
+        // Verificando data de nascimento
+        if(dataNasc == ""){
+            alert("Informe sua data de nascimento")
+            erro = true
+        }else if((dataNasc.split('-'))[0] > 2013){
+            txtDataNasc.value = ""
+            alert("Você deve ter pelo menos 10 anos para se cadastrar!")
+            erro = true
+        }
+
+        // Verificando se há erros
+        if(erro == false){
+            prosseguir()
+        }else{
+            alert("Campos inválidos detectados! Verifique o conteúdo!")
         }
     }
 
-    function voltar() {
-        if (contador == 1) {
-            contador--
-            btnVoltar.style = 'display:none;'
-        } else if (contador == 2) {
-            contador--
-        } else if (contador == 3) {
-            contador--
-        } else if (contador == 4) {
-            contador--
-            btnContinuar.style = 'display:block;'
-            btnCadastrar.style = 'display:none;'
+    function verificarPlaneta(planeta) {
+        planetaFav = planeta
+        prosseguir()
+    }
+
+    function verificarDiaNoite(periodo) {
+        diaNoite = periodo
+        prosseguir()
+    }
+
+    function verificarSenha(){
+        senha = txtSenha.value
+        let confirmarSenha = txtConfirmarSenha.value
+        let erro = false
+
+        // Campos vazios?
+
+        if(senha == ""){
+            txtSenha.placeholder = 'Insira a senha!'
+            erro = true
+        }else if(senha.length < 8){
+            alert("Erro! A senha deve conter pelo menos 8 caracteres!")
+            erro = true
         }
+
+        if(confirmarSenha == ""){
+            txtConfirmarSenha.placeholder = 'Confirme sua senha!'
+            erro = true
+        }else if(confirmarSenha != senha){
+            alert('Erro! Senhas diferentes!')
+            erro = true
+        }
+
+        // Algum erro?
+
+        if(erro == false){
+            cadastrar()
+        }else{
+            alert("Campos Inválidos! Verifique o conteudo!")
+        }
+    }
+    
+    function verificarNivel(){
+        nivelDiv.style = 'display:flex;'
+        nivel1.style = 'background-color:white;'
+        nivel2.style = 'background-color:white;'
+        nivel3.style = 'background-color:white;'
+        
+        let simbolos = ['@',';','.','!','?','#','$','%']
+        let numeros = [0,1,2,3,4,5,6,7,8,9]
+        let maiusc = [
+            'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'
+        ]
+
+        let countSimbolo = 0
+        let countNumeros = 0
+        let countMaiusc = 0
+        let senhaNivel = txtSenha.value
+
+        for(let i = 0; i <= simbolos.length - 1; i++){
+            for(let j = 0; j <= senhaNivel.length - 1; j++){
+                if(senhaNivel[j] == simbolos[i]){
+                    countSimbolo++
+                }
+            }
+        }
+        for(let i = 0; i <= numeros.length - 1; i++){
+            for(let j = 0; j <= senhaNivel.length - 1; j++){
+                if(senhaNivel[j] == numeros[i]){
+                    countNumeros++
+                }
+            }
+        }
+        for(let i = 0; i <= maiusc.length - 1; i++){
+            for(let j = 0; j <= senhaNivel.length - 1; j++){
+                if(senhaNivel[j] == maiusc[i]){
+                    countMaiusc++
+                }
+            }
+        }
+
+        console.log('Quantidade de Símbolos encontrados: ' + countSimbolo)
+        console.log('Quantidade de Números encontrados: ' + countNumeros)
+        console.log('Quantidade de Maiúsculas encontradas: ' + countMaiusc)
+
+        if(senhaNivel.length >= 0){
+            nivel1.style = 'background-color:red;'
+        }
+        if((countMaiusc >= 1 && senhaNivel.length >= 4) || (countNumeros >= 2 && senhaNivel.length >= 4) || (countSimbolo >= 2 && senhaNivel.length >= 4)){
+            nivel2.style = 'background-color:yellow;'
+
+        }
+        if(senhaNivel.length >= 8 && countMaiusc >= 1 && countNumeros >= 2 && countSimbolo >= 2){
+            nivel3.style = 'background-color:green;'
+        }
+    }
+
+    function cadastrar() {
+        alert('Funfou')
     }
 </script>
