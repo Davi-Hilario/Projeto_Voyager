@@ -7,9 +7,10 @@ function login(email, senha) {
     return database.executar(instrucao);
 }
 
-function cadastrar(nome, email, senha) {
+function cadastrar(nome, dataServer, email, senha, planeta, diaNoite) {
     var instrucao = `
-        INSERT INTO usuario (nome, email, senha) VALUES ('${nome}', '${email}', '${senha}');
+        INSERT INTO usuario (nomeUsuario, dataNasc, planetaFavorito, diaOuNoite, emailUsuario, senhaUsuario)
+        VALUES ('${nome}', '${dataServer}', '${planeta}', '${diaNoite}', '${email}', '${senha}');
     `;
     return database.executar(instrucao);
 }

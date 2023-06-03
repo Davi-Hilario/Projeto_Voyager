@@ -1,5 +1,28 @@
+/* Animações */
+@keyframes planetasLevitando {
+    0% {
+        margin-bottom: -5px;
+    }
+
+    25%{
+        margin-bottom: 10px;
+    }
+
+    50% {
+        margin-bottom: 15px;
+    }
+    75%{
+        margin-bottom: 10px;
+    }
+    100%{
+        margin-bottom: -5px;
+    }
+}
+
 html, body{
-    background-image: url(../assets/img/fundoObjetivos.png);
+    background-image: url(../assets/img/galaxia.jpg);
+    background-color: #2e0f4bab;
+    background-blend-mode: darken;
 }
 
 .tela {
@@ -11,8 +34,9 @@ html, body{
 }
 
 .form{
-    width: 35%;
-    height: 70%;
+    width: 30%;
+    height: 80%;
+    margin-top: 5%;
     background-image: linear-gradient(to bottom, #A974DB,#7c2fc5, #2e0f4b);
     border-radius: 10px;
     display: flex;
@@ -42,6 +66,12 @@ html, body{
     font-size: 20px;
 }
 
+.linha-form{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
 .titulo {
     position: absolute;
     align-self: flex-start;
@@ -60,6 +90,13 @@ html, body{
     align-items: center;
 }
 
+.linha-form .ddd{
+    width: 30%;
+}
+.linha-form .numeroTel{
+    width: 60%;
+}
+
 /* tela2 */
 .telaEtapa2 .container{
     justify-content: space-evenly;
@@ -69,7 +106,6 @@ html, body{
 .bloco-imagem{
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     align-items: center;
 }
 
@@ -77,6 +113,8 @@ html, body{
     color: #E9E0F5;
     font-weight: bold;
     font-size: large;
+    /* background-color: #2e0f4b; */
+    /* padding: 5px; */
 }
 .bloco-imagem img{
     width: 120px;
@@ -86,8 +124,60 @@ html, body{
 }
 
 
-    
+.bloco-imagem .planeta{
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    animation-timing-function: cubic-bezier(1, 1, 1, 1);
+}
 
+.bloco-imagem .mercurio{
+    height: 50px;
+    width: auto;
+    animation: planetasLevitando 2s ease;
+    animation-iteration-count: infinite;
+}
+.bloco-imagem .venus{
+    height: 100px;
+    width: auto;
+    animation: planetasLevitando 3.5s ease;
+    animation-iteration-count: infinite;
+}
+.bloco-imagem .terra{
+    height: 110px;
+    width: auto;
+    animation: planetasLevitando 4s ease;
+    animation-iteration-count: infinite;
+}
+.bloco-imagem .marte{
+    height: 90px;
+    width: auto;
+    animation: planetasLevitando 4s ease;
+    animation-iteration-count: infinite;
+}
+.bloco-imagem .jupiter{
+    height: 200px;
+    width: auto;
+    animation: planetasLevitando 6.5s ease;
+    animation-iteration-count: infinite;
+}   
+.bloco-imagem .saturno{
+    height: 260px;
+    width: auto;
+    animation: planetasLevitando 6s ease;
+    animation-iteration-count: infinite;
+}
+.bloco-imagem .urano{
+    height: 150px;
+    width: auto;
+    animation: planetasLevitando 7s ease;
+    animation-iteration-count: infinite;
+}
+.bloco-imagem .netuno{
+    height: 130px;
+    width: auto;
+    animation: planetasLevitando 7.5s ease;
+    animation-iteration-count: infinite;
+}
 /* tela 3 */
 .colunaTela3 {
     width: 50%;
@@ -119,14 +209,6 @@ html, body{
 .lua {
     background-image: radial-gradient(darkgray, gray, lightgray);
     box-shadow: 5px 5px 50px white;
-}
-
-.containerDia {
-    background-image: linear-gradient(to top, lightblue, royalblue, midnightblue);
-}
-
-.containerNoite {
-    background-image: linear-gradient(to top, midnightblue, rgb(0, 0, 41), rgb(0, 0, 26));
 }
 
 .btn-diaNoite {

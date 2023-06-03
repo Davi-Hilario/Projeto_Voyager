@@ -37,7 +37,6 @@
                 </div>
 
                 <button onclick="logar()" class="btn-login">Entrar</button>
-                <a href="esqueceuSenha.html">Esqueceu a Senha?</a>
             </div>
         </div>
         <div class="telaImagem tela">
@@ -70,7 +69,7 @@
                 },
                 body: JSON.stringify({
                     emailServer: email,
-                    senhaServer: senha
+                    senhaServer: btoa(senha)
                 })
             }).then(function (resposta) {
                 if (resposta.ok) {

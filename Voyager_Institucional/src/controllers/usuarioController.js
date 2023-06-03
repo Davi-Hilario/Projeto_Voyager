@@ -1,4 +1,5 @@
 var usuarioModel = require("../models/usuarioModel");
+var telefoneModel = require("../models/telefoneModel");
 
 var sessoes = [];
 
@@ -12,9 +13,9 @@ function login(req, res) {
                 if (resultado.length == 1) {
                     res.json(resultado[0]);
                 } else if (resultado.length == 0) {
-                    alert('Email e/ou senha inválido(s)!')
+                    console.error('Email e/ou senha inválido(s)!')
                 } else {
-                    alert('Mais de um usuário com o mesmo login e senha!')
+                    console.error('Mais de um usuário com o mesmo login e senha!')
                 }
             }
         ).catch(
@@ -26,23 +27,13 @@ function login(req, res) {
         );
 }
 
-function cadastrar(req, res) {
-    var nome = req.body.nomeServer;
-    var email = req.body.emailServer;
-    var senha = req.body.senhaServer;
+function cadastrarUsuario(res) {
+        usuarioModel.cadastrar(nome, dataServer, email, senha, planeta, diaNoite)
 
-    if (nome == undefined) {
-        res.status(400).send("Seu nome está undefined!");
-    } else if (email == undefined) {
-        res.status(400).send("Seu email está undefined!");
-    } else if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
-    } else {
-
-        usuarioModel.cadastrar(nome, email, senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
+                    cadastrarTelefone(res)
                 }
             ).catch(
                 function (erro) {
@@ -55,9 +46,8 @@ function cadastrar(req, res) {
                 }
             );
     }
-}
 
-function consultarDados(req, res) {
+function consultarDados(res) {
     usuarioModel.consultarDados()
         .then(function (resultado) {
             res.json(resultado)
@@ -65,6 +55,29 @@ function consultarDados(req, res) {
             console.log('Erro ao consultar os dados!' + erro)
             res.status(500).json(erro.sqlMessage);
         })
+}
+
+function cadastrarTelefone(res){
+    telefoneModel.buscarUsuario(email)
+    .then(function (resultado) {
+        res.json(resultado)
+        telefoneModel.cadastrar(ddd, telefone, resultado[0].idUsuario)
+    }).catch(function(erro){
+        console.log('Erro ao consultar os dados!' + erro)
+        res.status(500).json(erro.sqlMessage);
+    })
+}
+
+function cadastrar(req, res){
+    var nome = req.body.nomeServer;
+    var ddd = req.body.dddServer;
+    var tel = req.body.telServer;
+    var dataServer = req.body.dataServer;
+    var email = req.body.emailServer;
+    var senha = req.body.senhaServer;
+    var planeta = req.body.planetaServer;
+    var diaNoite = req.body.diaNoiteServer;
+    cadastrarUsuario(res)
 }
 
 module.exports = {

@@ -8,12 +8,12 @@
     <!-- <link rel="icon" href="assets/img/logoVoyager.png">s -->
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/estilo-index.css">
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Home</title>
 </head>
 
-<body>
+<body onload="validarSession()">
     <!-- Barra de Navegação Superior -->
     <div class="navBar">
         <div class="container">
@@ -22,9 +22,10 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="quiz.html">Quiz</a></li>
                 <li><a href="sistemaSolar.html">Sistema Solar</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li id="liLogin"><a href="login.html">Login</a></li>
             </ul>
             <button class="btn btn-cadastro" id="btnCadastrar" onclick="location.href='cadastro.html'">Cadastro</button>
+            <button class="btn btn-sair" id="btnSair" onclick="destruirSession()" style="display: none;">Sair</button>
         </div>
     </div>
     <div class="telaBanner tela">
@@ -117,7 +118,7 @@
             </div>
         </div>
     </div>
-    <div class="telaGraficos tela">
+    <div class="telaGraficos tela" id="telaGraficos">
         <div class="container">
             <br><br>
             <h1>Votos dos Usuários</h1>
@@ -230,7 +231,7 @@
 
                 });
             } else {
-                alert("Houve um erro ao tentar realizar a consulta!");
+                telaGraficos.style = 'display:none'                
                 resposta.text().then(texto => {
                     console.error(texto);
                 });

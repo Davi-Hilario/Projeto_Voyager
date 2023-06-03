@@ -8,9 +8,10 @@
     <title>Quiz</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/estilo-quiz.css">
+    <script src="js/script.js"></script>
 </head>
 
-<body>
+<body onload="validarSession()">
     <div class="navBar">
         <div class="container">
             <img src="assets/img/logoVoyager.png" alt="" class="logoNavbar">
@@ -21,6 +22,8 @@
                 <li><a href="login.html">Login</a></li>
             </ul>
             <button class="btn btn-cadastro" id="btnCadastrar" onclick="location.href='cadastro.html'">Cadastro</button>
+            <button class="btn btn-sair" id="btnSair" onclick="destruirSession()" style="display: none;">Sair</button>
+
         </div>
     </div>
     <br><br>

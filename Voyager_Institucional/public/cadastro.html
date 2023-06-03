@@ -20,8 +20,11 @@
                     <input type="text" id="txtNome" value="Davi Alexandre">
                 </div>
                 <div class="bloco-form">
-                    <span>Seu Email</span><br>
-                    <input type="email" id="txtEmail" value="davi.hilario@sptech.school">
+                    <span>Seu Telefone</span><br>
+                    <div class="linha-form">
+                        <input type="text" id="txtDDD" value="11" class="ddd" placeholder="DDD">
+                        <input type="text" id="txtTel" value="96703-6123" class="numeroTel" placeholder="Seu número">
+                    </div>
                 </div>
                 <div class="bloco-form">
                     <span>Sua Data de Nascimento</span><br>
@@ -35,48 +38,48 @@
         <h1 class="titulo">Qual o seu planeta favorito?</h1>
         <div class="container">
             <div class="bloco-imagem">
-                <img src="assets/img/mercurio.png" alt="Mercúrio" onclick="verificarPlaneta('Mercúrio')"
-                style="margin-top: 5rem;">
+                <img src="assets/img/mercurio-removebg-preview.png" alt="Mercúrio" onclick="verificarPlaneta('Mercúrio')"
+                style="margin-top: 5rem;" class="mercurio planeta">
                 <br>
                 <span>Mercúrio</span>
             </div>
             <div class="bloco-imagem">
-                <img src="assets/img/imgVenus.png" alt="Vênus" onclick="verificarPlaneta('Vênus')">
+                <img src="assets/img/imgVenus.png" alt="Vênus" onclick="verificarPlaneta('Vênus')" class="venus planeta">
                 <br>
                 <span>Vênus</span>
             </div>
             <div class="bloco-imagem">
                 <img src="assets/img/terra.png" alt="Terra" onclick="verificarPlaneta('Terra')"
-                style="margin-top: -5rem;">
+                style="margin-top: 5rem;" class="terra planeta">
                 <br>
                 <span>Terra</span>
             </div>
             <div class="bloco-imagem">
-                <img src="assets/img/marte.png" alt="Marte" onclick="verificarPlaneta('Marte')"
-                style="margin-top: -10rem;">
+                <img src="assets/img/marte-removebg-preview.png" alt="Marte" onclick="verificarPlaneta('Marte')"
+                style="margin-top: 10rem;" class="marte planeta">
                 <br>
                 <span>Marte</span>
             </div>
             <div class="bloco-imagem">
                 <img src="assets/img/jupiter.png" alt="Júpiter" onclick="verificarPlaneta('Júpiter')"
-                style="margin-top: -10rem;">
+                style="margin-top: 10rem;" class="jupiter planeta">
                 <br>
                 <span>Júpiter</span>
             </div>
             <div class="bloco-imagem">
                 <img src="assets/img/saturno.png" alt="Saturno" onclick="verificarPlaneta('Saturno')"
-                style="margin-top: -5rem;">
+                style="margin-top: 5rem;" class="saturno planeta">
                 <br>
                 <span>Saturno</span>
             </div>
             <div class="bloco-imagem">
-                <img src="assets/img/urano.png" alt="Urano" onclick="verificarPlaneta('Urano')">
+                <img src="assets/img/urano-removebg-preview.png" alt="Urano" onclick="verificarPlaneta('Urano')" class="urano planeta">
                 <br>
                 <span>Urano</span>
             </div>
             <div class="bloco-imagem">
-                <img src="assets/img/netuno.png" alt="Netuno" onclick="verificarPlaneta('Netuno')"
-                style="margin-top: 5rem;">
+                <img src="assets/img/netuno-removebg-preview.png" alt="Netuno" onclick="verificarPlaneta('Netuno')"
+                style="margin-top: 5rem;" class="netuno planeta">
                 <br>
                 <span>Netuno</span>
             </div>
@@ -101,6 +104,10 @@
         <h1 class="titulo">Finalizando</h1>
         <div class="container">
             <div class="formulario-Etapa4 form">
+                <div class="bloco-form">
+                    <span>Seu Email</span><br>
+                    <input type="email" id="txtEmail" value="davi.hilario@sptech.school">
+                </div>
                 <div class="bloco-form">
                     <span>Senha</span><br>
                     <input type="password" id="txtSenha" oninput="verificarNivel()">
@@ -128,6 +135,8 @@
 <script>
 
     let nome = ""
+    let ddd = ""
+    let telefone = ""
     let email = ""
     let dataNasc = ""
     let planetaFav = ""
@@ -151,7 +160,8 @@
 
     function verificarEtapa1(){
         nome = txtNome.value
-        email = txtEmail.value
+        ddd = txtDDD.value
+        telefone = txtTel.value
         dataNasc = txtDataNasc.value
         // console.log((dataNasc.split('-'))[0])
         let erro = false
@@ -166,13 +176,22 @@
             erro = true
         }
 
-        // Verificações do email
-        if(email == ""){
-            txtEmail.placeholder = "Digite o Email!"
+        // Verificando telefone e DDD
+        if(ddd == ""){
+            txtDDD.placeholder = 'Informe o DDD'
             erro = true
-        }else if((email.indexOf('@') == -1) || (email.indexOf('.') == -1)){
-            txtEmail.value = ''
-            txtEmail.placeholder = "Email Inválido! Reveja o conteúdo!"
+        }else if(ddd.length > 2){
+            txtDDD.value = ''
+            txtDDD.placeholder = 'DDD Inválido'
+            erro = true
+        }
+
+        if(telefone == ""){
+            txtTel.placeholder = 'Informe o telefone!'
+            erro = true
+        }else if(telefone.length > 10 || telefone.length < 8){
+            txtTel.value = ''
+            txtTel.placeholder = 'Telefone inválido!'
             erro = true
         }
 
@@ -206,10 +225,20 @@
 
     function verificarSenha(){
         senha = txtSenha.value
+        email = txtEmail.value
         let confirmarSenha = txtConfirmarSenha.value
         let erro = false
 
-        // Campos vazios?
+        // Campos inválidos?
+
+        if(email == ""){
+            txtEmail.placeholder = "Digite o Email!"
+            erro = true
+        }else if((email.indexOf('@') == -1) || (email.indexOf('.') == -1)){
+            txtEmail.value = ''
+            txtEmail.placeholder = "Email Inválido! Reveja o conteúdo!"
+            erro = true
+        }
 
         if(senha == ""){
             txtSenha.placeholder = 'Insira a senha!'
@@ -292,6 +321,36 @@
     }
 
     function cadastrar() {
-        alert('Funfou')
+        fetch('/usuarios/cadastrar', {
+            method:'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                nomeServer: nome,
+                dddServer: ddd,
+                telServer: telefone,
+                dataServer: dataNasc,
+                emailServer: email,
+                senhaServer: btoa(senha),
+                planetaServer: planetaFav,
+                diaNoiteServer: diaNoite
+            })
+        }).then((resposta) => {
+            if(resposta.ok){
+                alert('Cadastro Efetuado com Sucesso!')
+                setTimeout(()=>{
+                    window.location = "login.html";
+                }, 2000)
+            }else{
+                alert('Erro ao realizar o cadastro!')
+                // console.log(resposta)
+                resposta.text().then(texto => {
+                    console.error(texto)
+                })
+            }
+        }).catch((erro) => {
+            console.error(erro)
+        })
     }
 </script>

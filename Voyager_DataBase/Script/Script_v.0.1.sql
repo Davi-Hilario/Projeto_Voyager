@@ -32,4 +32,9 @@ create table quiz
     foreign key (fkUsuario) references Usuario(idUsuario)
 );
 
-drop table quiz;
+create table telefone
+(
+	idTel int primary key auto_increment,
+    dddTel char(2),
+    numeroTel char(12)
+);
