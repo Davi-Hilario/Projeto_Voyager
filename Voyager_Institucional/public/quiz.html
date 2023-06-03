@@ -38,6 +38,7 @@
 
 </html>
 <script>
+    const idUser = sessionStorage.ID_USUARIO
     var index = 0
     var acertos = 0
     var erros = 0
@@ -54,6 +55,16 @@
             'A alternativa que possui todos os planetas como gasosos é:',
             'O planeta mais quente do sistema solar é:'
         ]
+
+    if(!(validarSession())){
+        titulo.innerHTML = 'Você não está logado/a'
+        subtitulo.innerHTML = 'Faça login para poder responder o quiz!'
+        resposta.innerHTML = 
+        `
+            <button class="btn btn-comecar" onclick="location.href = 'login.html'">Logar</button>
+        `
+
+    }
 
     function iniciarQuiz() {
         index++
@@ -166,6 +177,29 @@
     }
     
     function enviarDados(){
-        
+        fetch('/quiz/enviarDados', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                qtdAcertos: acertos,
+                qtdErros: erros,
+                idUser: idUser
+            })
+        }).then(function(resposta){
+            if(resposta.ok){
+                resposta.json().then(resp => {
+                    console.log('Dados enviados com sucesso! ' + JSON.stringfy(resp))
+                    // receberDados()
+                })
+            }else{
+                resposta.text().then(error =>{
+                    console.error(error)
+                })
+            }
+        }).catch(function (erro){
+            console.log('Erro ao enviar os dados! ' + erro)
+        })
     }
 </script>

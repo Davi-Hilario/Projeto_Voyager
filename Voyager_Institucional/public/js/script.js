@@ -7,7 +7,9 @@ function validarSession() {
         btnSair.style = 'display:block;'
         btnCadastrar.style = 'display:none;'
         liLogin.innerHTML = `<a>${nome}</a>`
+        return true
     }
+    return false
 }
 
 function destruirSession() {
