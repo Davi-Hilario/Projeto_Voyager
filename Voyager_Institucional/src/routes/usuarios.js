@@ -8,7 +8,7 @@ router.post("/login", function (req, res) {
 });
 
 router.post("/cadastrar", function (req, res) {
-    usuarioController.cadastrar(req, res);
+    usuarioController.cadastrarUsuario(req, res);
 })
 
 router.post("/consultarDados", function(req, res){
