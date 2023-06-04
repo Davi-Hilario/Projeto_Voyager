@@ -17,5 +17,5 @@ function destruirSession() {
     btnSair.style = 'display:none;'
     btnCadastrar.style = 'display:block;'
     liLogin.innerHTML = `<a href="login.html">Login</a>`
-
+    location.reload()
 }

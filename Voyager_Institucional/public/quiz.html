@@ -9,9 +9,10 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/estilo-quiz.css">
     <script src="js/script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body onload="validarSession()">
+<body onload="validarSession(), receberDados()">
     <div class="navBar">
         <div class="container">
             <img src="assets/img/logoVoyager.png" alt="" class="logoNavbar">
@@ -19,7 +20,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="quiz.html">Quiz</a></li>
                 <li><a href="sistemaSolar.html">Sistema Solar</a></li>
-                <li><a href="login.html">Login</a></li>
+                <li><a href="login.html" id="liLogin">Login</a></li>
             </ul>
             <button class="btn btn-cadastro" id="btnCadastrar" onclick="location.href='cadastro.html'">Cadastro</button>
             <button class="btn btn-sair" id="btnSair" onclick="destruirSession()" style="display: none;">Sair</button>
@@ -27,17 +28,22 @@
         </div>
     </div>
     <br><br>
-    <div class="telaQuiz tela">
+    <div class="telaQuiz tela" id="telaMain">
         <h1 id="titulo">Quiz do Sistema Solar</h1>
         <h2 id="subtitulo">Venha testar o quanto você sabe!</h2>
-        <div class="respostas" id="resposta">
+        <div class="respostas resposta-quiz" id="respostaQuiz">
             <button class="btn btn-comecar" onclick="iniciarQuiz()">Começar Quiz</button>
+        </div>
+        <div class="respostas resposta-grafico" style="display: none;" id="respostaGrafico">
+            <div class="area-graficos" id="divGrafico"></div>
+            <div class="area-mensagem" id="divMensagem"></div>
         </div>
     </div>
 </body>
 
 </html>
 <script>
+    // Variaveis Globais
     const idUser = sessionStorage.ID_USUARIO
     var index = 0
     var acertos = 0
@@ -56,21 +62,75 @@
             'O planeta mais quente do sistema solar é:'
         ]
 
-    if(!(validarSession())){
+    // Criando Grafico
+    function criarGrafico() {
+        mostrarDivGrafico()
+        let labelResultado = []
+
+        let dadosGrafico = {
+            labels: labelResultado,
+            datasets: [{
+                label: 'Quantidade de Acertos/Erros',
+                data: [],
+                backgroundColor: ['#A974DB', '#6B5CA5']
+            }]
+        };
+
+        const configGrafico = {
+            type: 'doughnut',
+            data: dadosGrafico,
+        };
+
+        let graficoQuiz = new Chart(document.getElementById(`graficoQuiz`),
+            configGrafico
+        );
+
+        labelResultado.push('Acertos', 'Erros')
+        dadosGrafico.datasets[0].data.push(sessionStorage.ACERTOS_QUIZ, sessionStorage.ERROS_QUIZ)
+        graficoQuiz.update();
+    }
+
+    function mostrarDivGrafico() {
+        var mensagem = "";
+        var numAcertos = sessionStorage.ACERTOS_QUIZ;
+        var numErros = sessionStorage.ERROS_QUIZ;
+        var nome = sessionStorage.NOME_USUARIO;
+
+        respostaQuiz.style = 'display:none;';
+        respostaGrafico.style = 'display:flex;';
+        divGrafico.innerHTML = `<canvas id="graficoQuiz"></canvas>`;
+
+        if(numAcertos > numErros){
+            mensagem = "Parabéns"
+        }else if(numAcertos == numErros){
+            mensagem = "Chegou perto"
+        }else{
+            mensagem = "Não desanime"
+        }
+
+        divMensagem.innerHTML =
+        `
+            <h2 class='tituloResposta'>${mensagem} ${nome}</h2>
+            <span>Você acertou <b>${numAcertos}</b> perguntas e errou <b>${numErros}</b>
+            perguntas</span>
+        `
+    }
+    // Validando session
+    if (!(validarSession())) {
         titulo.innerHTML = 'Você não está logado/a'
         subtitulo.innerHTML = 'Faça login para poder responder o quiz!'
-        resposta.innerHTML = 
+        respostaQuiz.innerHTML =
         `
             <button class="btn btn-comecar" onclick="location.href = 'login.html'">Logar</button>
         `
-
     }
 
+    // Funções
     function iniciarQuiz() {
         index++
         titulo.innerHTML = `Pergunta ${index}`
         subtitulo.innerHTML = `${perguntas[index - 1]}`
-        resposta.innerHTML =
+        respostaQuiz.innerHTML =
             `
             <button class="btn btn-resposta" onclick="verificarResposta('certo')">Mercúrio</button>
             <button class="btn btn-resposta" onclick="verificarResposta('errado')">Saturno</button>
@@ -90,7 +150,7 @@
         }
 
         if (index == 2) {
-            resposta.innerHTML =
+            respostaQuiz.innerHTML =
                 `
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Urano</button>
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Netuno</button>
@@ -98,7 +158,7 @@
                 <button class="btn btn-resposta" onclick="verificarResposta('certo')">Saturno</button>
             `
         } else if (index == 3) {
-            resposta.innerHTML =
+            respostaQuiz.innerHTML =
                 `
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Sol</button>
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Lua</button>
@@ -106,7 +166,7 @@
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Marte</button>
             `
         } else if (index == 4) {
-            resposta.innerHTML =
+            respostaQuiz.innerHTML =
                 `
                 <button class="btn btn-resposta" onclick="verificarResposta('certo')">Estrelas</button>
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Planetas</button>
@@ -114,7 +174,7 @@
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Cometas</button>
             `
         } else if (index == 5) {
-            resposta.innerHTML =
+            respostaQuiz.innerHTML =
                 `
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Vênus</button>
                 <button class="btn btn-resposta" onclick="verificarResposta('certo')">Marte</button>
@@ -122,7 +182,7 @@
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Terra</button>
             `
         } else if (index == 6) {
-            resposta.innerHTML =
+            respostaQuiz.innerHTML =
                 `
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Convergência</button>
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Rotação</button>
@@ -130,7 +190,7 @@
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Divergência</button>
             `
         } else if (index == 7) {
-            resposta.innerHTML =
+            respostaQuiz.innerHTML =
                 `
                 <button class="btn btn-resposta" onclick="verificarResposta('certo')">Urano</button>
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Vênus</button>
@@ -138,7 +198,7 @@
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Mercúrio</button>
             `
         } else if (index == 8) {
-            resposta.innerHTML =
+            respostaQuiz.innerHTML =
                 `
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Júpiter, Saturno, Urano e Netuno</button>
                 <button class="btn btn-resposta" onclick="verificarResposta('certo')">Mercúrio, Vênus, Terra e Marte</button>
@@ -146,7 +206,7 @@
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Plutão, Mercúrio, Vênus, Terra e Marte</button>
             `
         } else if (index == 9) {
-            resposta.innerHTML =
+            respostaQuiz.innerHTML =
                 `
                 <button class="btn btn-resposta" onclick="verificarResposta('certo')">Júpiter, Saturno, Urano e Netuno</button>
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Mercúrio, Vênus, Terra e Marte</button>
@@ -154,7 +214,7 @@
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Plutão, Mercúrio, Vênus, Terra e Marte</button>
             `
         } else if (index == 10) {
-            resposta.innerHTML =
+            respostaQuiz.innerHTML =
                 `
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Mercúrio</button>
                 <button class="btn btn-resposta" onclick="verificarResposta('errado')">Terra</button>
@@ -169,14 +229,12 @@
         alert(`Você acertou ${acertos} e errou ${erros}`)
         titulo.innerHTML = `Você Finalizou o Quiz!`
         subtitulo.innerHTML = `Veja seus resultados!`
-        resposta.innerHTML =
-        `
-            <canvas id="graficoQuiz"></canvas>
-        `
         enviarDados()
+        criarGrafico()
+        location.reload()
     }
-    
-    function enviarDados(){
+
+    function enviarDados() {
         fetch('/quiz/enviarDados', {
             method: 'POST',
             headers: {
@@ -187,19 +245,55 @@
                 qtdErros: erros,
                 idUser: idUser
             })
-        }).then(function(resposta){
-            if(resposta.ok){
+        }).then(function (resposta) {
+            if (resposta.ok) {
                 resposta.json().then(resp => {
                     console.log('Dados enviados com sucesso! ' + JSON.stringfy(resp))
-                    // receberDados()
+                    receberDados()
                 })
-            }else{
-                resposta.text().then(error =>{
+            } else {
+                resposta.text().then(error => {
                     console.error(error)
                 })
             }
-        }).catch(function (erro){
+        }).catch(function (erro) {
             console.log('Erro ao enviar os dados! ' + erro)
         })
     }
+
+    function receberDados() {
+        fetch("/quiz/receberDados", {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                fkUser: idUser
+            })
+        }).then(function (resposta) {
+            if (resposta.ok) {
+                resposta.json().then(json => {
+                    console.log(json)
+                    console.log("Dados recebidos com sucesso!")
+                    console.log(json[0].qtdAcertos)
+                    console.log(json[0].qtdErros)
+                    sessionStorage.ACERTOS_QUIZ = json[0].qtdAcertos
+                    sessionStorage.ERROS_QUIZ = json[0].qtdErros
+                    if (json.length != 0) {
+                        titulo.innerHTML = `Você Finalizou o Quiz!`
+                        subtitulo.innerHTML = `Veja seus resultados!`
+                        criarGrafico()
+                    }
+                })
+            } else {
+                resposta.text().then(error => {
+                    console.error("Houve um erro ao consultar os dados! " + error)
+                })
+            }
+        }).catch(function (erro) {
+            console.log("Erro ao consultar os dados: " + erro)
+        })
+    }
+
+
 </script>

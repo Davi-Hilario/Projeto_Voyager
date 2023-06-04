@@ -134,7 +134,7 @@
                 <div class="blocoTextoGrafico">
                     <p>
                         <span id="qtdVotosDia"></span>pessoas votaram em Dia como sendo o favorito <br><br><br>
-                        <span id="qtdVotosNoite"></span>pessoas votaram em Noite como sendo o favorito 
+                        <span id="qtdVotosNoite"></span>pessoas votaram em Noite como sendo o favorito
                     </p>
                 </div>
                 <canvas id="graficoDiaNoite"></canvas>
@@ -208,7 +208,7 @@
                         (
                             'Mercúrio', 'Vênus', 'Terra', 'Marte', 'Júpiter', 'Saturno', 'Urano', 'Netuno'
                         );
-                        dadosGraficoPlanetas.datasets[0].data.push
+                    dadosGraficoPlanetas.datasets[0].data.push
                         (
                             registro.Mercurio,
                             registro.Venus,
@@ -220,7 +220,7 @@
                             registro.Netuno
                         );
 
-                        labelsGraficoDiaNoite.push('Dia', 'Noite');
+                    labelsGraficoDiaNoite.push('Dia', 'Noite');
                     dadosGraficoDiaNoite.datasets[0].data.push(registro.Dia, registro.Noite);
 
                     qtdVotosDia.innerHTML = `${registro.Dia} `;
@@ -231,7 +231,7 @@
 
                 });
             } else {
-                telaGraficos.style = 'display:none'                
+                telaGraficos.style = 'display:none'
                 resposta.text().then(texto => {
                     console.error(texto);
                 });

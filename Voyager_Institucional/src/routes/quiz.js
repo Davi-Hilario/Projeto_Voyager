@@ -7,5 +7,9 @@ router.post("/enviarDados", function(req, res){
     quizController.enviarDados(req, res);
 });
 
+router.post("/receberDados", function(req, res){
+    quizController.receberDados(req, res)
+})
+
 module.exports = router;
 
