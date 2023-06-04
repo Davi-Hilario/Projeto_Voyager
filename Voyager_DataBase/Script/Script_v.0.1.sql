@@ -1,7 +1,7 @@
 create database Bd_Voyager;
 use Bd_Voyager;
 
-create table Usuario
+create table if not exists Usuario
 (
 	idUsuario int primary key auto_increment,
     nomeUsuario varchar(90),
@@ -23,7 +23,7 @@ insert into Usuario values
     
 select * from Usuario;
 
-create table quiz
+create table if not exists quiz
 (
 	idQuiz int primary key auto_increment,
     qtdAcertos int,
@@ -32,9 +32,20 @@ create table quiz
     foreign key (fkUsuario) references Usuario(idUsuario)
 );
 
-create table telefone
+create table if not exists telefone
 (
 	idTel int primary key auto_increment,
     dddTel char(2),
-    numeroTel char(12)
+    numeroTel char(12),
+    fkUsuario int,
+    foreign key(fkUsuario) references Usuario(idUsuario)
 );
+
+create unique index fkUser on quiz(fkUsuario);
+
+select * from usuario;
+select * from telefone;
+select * from quiz;
+select nomeUsuario, dataNasc, planetaFavorito, diaOuNoite, dddTel, numeroTel, qtdAcertos, qtdErros from usuario u 
+	join telefone t on u.idUsuario = t.fkUsuario
+    join quiz q on q.fkUsuario = u.idUsuario;

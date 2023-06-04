@@ -188,6 +188,11 @@
     transform: translateX(6%);
 }
 
+/* Tela Sobre Mim */
+.telaSobreMim{
+    background-image: url(../assets/img/fundoObjetivos.png);
+}
+
 /* Tela Descubra */
 
 .telaDescubra{
