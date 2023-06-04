@@ -32,7 +32,7 @@
         <div class="container">
             <p>"O universo não é indiferente a nossa <br> existência, ele depende dela."<br>
                 -Stephen Hawking</p>
-            <button class="btn btn-vejaAqui">Veja Aqui</button>
+            <button class="btn btn-vejaAqui" onclick="location.href = 'sistemaSolar.html'">Sistema Solar</button>
         </div>
     </div>
     <div class="telaValores tela">
@@ -75,7 +75,7 @@
                 <div class="objetivos-coluna-esquerda">
                     <div class="linha-objetivos">
                         <img src="assets/img/sol.png" alt="">
-                        <p>Aumentar o interesse dos interessados em relação ao Sistema Solar</p>
+                        <p>Aumentar o número de interessados no Sistema Solar</p>
                     </div>
                     <div class="linha-objetivos linha-objetivos-meio">
                         <img src="assets/img/saturno.png" alt="">
@@ -96,9 +96,21 @@
             </div>
         </div>
     </div>
-    <div class="telaSobreMim tela">
+    <div class="telaSobreMim tela" id="sobreMim">
         <div class="container">
-
+            <div class="area-foto">
+                
+            </div>
+            <div class="area-textoSobreMim">
+                <div class="container">
+                    <h1>Sobre Mim</h1>
+                    <p>
+                        Me chamo Davi Alexandre de Souza Hilário, atualmente cursando o 1° Ano do curso de Ciência da Computação na São Paulo Tech School.
+                        <br><br>
+                        Sempre fui muito interessado por temas espaciais e, por conta disso, desenvolvi a Voyager, o site que visa trazer informações interessantes sobre os planetas que compõe o nosso Sistema Solar!
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
     <div class="telaDescubra tela">
@@ -108,17 +120,17 @@
                 <div class="card-descubra">
                     <img src="assets/img/sol.png" alt="">
                     <h3 class="titulo-card">O Sol</h3>
-                    <button class="btn btn-card">Visitar</button>
+                    <button class="btn btn-card" onclick="location.href = 'sistemaSolar.html'">Visitar</button>
                 </div>
                 <div class="card-descubra">
                     <img src="assets/img/terra.png" alt="">
                     <h3 class="titulo-card">A Terra</h3>
-                    <button class="btn btn-card">Visitar</button>
+                    <button class="btn btn-card" onclick="location.href = 'sistemaSolar.html'">Visitar</button>
                 </div>
                 <div class="card-descubra">
                     <img src="assets/img/lua.png" alt="">
                     <h3 class="titulo-card">A Lua</h3>
-                    <button class="btn btn-card">Visitar</button>
+                    <button class="btn btn-card" onclick="location.href = 'sistemaSolar.html'">Visitar</button>
                 </div>
             </div>
         </div>
@@ -131,7 +143,7 @@
             <div class="area-graficos area-grafico-barra">
                 <canvas id="graficoPlanetas"></canvas>
                 <div class="blocoTextoGrafico">
-                    <p>testando escrever coisas</p>
+                    <p id="respPlanetaFavorito"></p>
                 </div>
             </div>
             <br><br><br>
@@ -167,29 +179,6 @@
                     <li><a href="login.html">Login</a></li>
                     <li>Cadastro</li>
                 </ul>
-            </div>
-            <div class="card-footer">
-                <div class="formulario-contato">
-                    <div class="container">
-                        <h3>Formulário de Contato</h3>
-                        <div class="bloco-formulario">
-                            <span>Email</span>
-                            <br>
-                            <input type="text" id="txtEmail">
-                        </div>
-                        <div class="bloco-formulario">
-                            <span>Assunto</span>
-                            <br>
-                            <input type="text" id="txtAssunto">
-                        </div>
-                        <div class="bloco-formulario">
-                            <span>Descrição</span>
-                            <br>
-                            <textarea id="txtDescricao" cols="30" rows="10"></textarea>
-                        </div>
-                        <button class="btn btn-enviar">Enviar</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -234,6 +223,8 @@
                     graficoPlanetas.update()
                     graficoDiaNoite.update()
 
+                    verificarPlaneta()
+
                 });
             } else {
                 telaGraficos.style = 'display:none'
@@ -245,6 +236,45 @@
             console.log("Erro ao consultar os dados! " + erro)
         })
     })()
+
+    // Qual o planeta com mais/menos votos?
+    function verificarPlaneta() {
+        var maiorVoto = 0
+        var menorVoto = 0
+        var maiorPlaneta = ""
+        var menorPlaneta = ""
+        var listaVotos = dadosGraficoPlanetas.datasets[0].data
+        var listaPlanetas = labelsGraficoPlanetas
+        var soma = 0
+
+        for (let i = 0; i < listaVotos.length; i++) {
+            soma += Number(listaVotos[i])
+            if (i == 0) {
+                maiorPlaneta = listaPlanetas[0]
+                menorPlaneta = listaPlanetas[0]
+                maiorVoto = listaVotos[0]
+                menorVoto = listaVotos[0]
+            }
+            if (listaVotos[i] > maiorVoto) {
+                maiorPlaneta = listaPlanetas[i]
+                maiorVoto = listaVotos[i]
+            }
+            if (listaVotos[i] < menorVoto) {
+                menorPlaneta = listaPlanetas[i]
+                menorVoto = listaVotos[i]
+            }
+        }
+        respPlanetaFavorito.innerHTML =
+         `
+            O planeta ${maiorPlaneta} foi o mais votado, tendo um total de ${maiorVoto}
+            votos (${((maiorVoto/soma)*100).toFixed(1)}% do total!<br>
+        `
+        respPlanetaFavorito.innerHTML +=
+        `
+            <br>O planeta ${menorPlaneta} foi o menos votado, tendo um total de ${menorVoto}
+            votos (${((menorVoto/soma)*100).toFixed()}% do total!
+        `
+    }
 
     // Grafico Planeta Favorito
 

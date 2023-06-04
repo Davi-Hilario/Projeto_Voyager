@@ -1,3 +1,12 @@
+@font-face {
+    font-family: plexMono;
+    src: url(../assets/font/IBMPlexMono-Regular.ttf);
+}
+
+*{
+    font-family: plexMono;
+}
+
 body, html{
     margin: 0;
     padding: 0;

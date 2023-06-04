@@ -193,6 +193,53 @@
     background-image: url(../assets/img/fundoObjetivos.png);
 }
 
+.telaSobreMim .container{
+    justify-content: space-around;
+    align-items: center;
+}
+.area-foto{
+    width: 30%;
+    height: 60%;
+    background-image: url(../assets/img/Eu.jpg);
+    background-color: #0B0013;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border: 15px solid #43007e;
+    border-radius: 30px;
+    /* border: 1px solid yellow; */
+}
+.area-textoSobreMim{
+    width: 50%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    background-color: #A974DB;
+    border-radius: 30px;
+    justify-content: center;
+    border: 15px solid #43007e;
+    align-items: center;
+    /* border: 1px solid red; */
+}
+
+.area-textoSobreMim .container{
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    /* background-color: red; */
+}
+
+.area-textoSobreMim p{
+    font-size: 17px;
+    color: #0B0013;
+    line-height: 40px;
+    font-weight: bold;
+}
+
+.area-textoSobreMim h1{
+    color: #0B0013;
+}
+
 /* Tela Descubra */
 
 .telaDescubra{
@@ -286,9 +333,7 @@
 }
 
 .area-grafico-barra{
-}
-
-.area-grafico-rosca{
+    gap: 10%;
 }
 
 .blocoTextoGrafico{
