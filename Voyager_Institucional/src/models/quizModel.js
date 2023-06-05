@@ -3,8 +3,8 @@ var database = require("../database/config");
 function enviarDados(acertos, erros, fkUser){
     var instrucao = 
     `
-        INSERT INTO quiz (qtdAcertos, qtdErros, fkUsuario, dataQuiz) VALUES 
-        (${acertos}, ${erros}, ${fkUser}, now());
+        INSERT INTO quiz (qtdAcertos, qtdErros, fkUsuario) VALUES 
+        (${acertos}, ${erros}, ${fkUser});
     `;
     return database.executar(instrucao);
 }

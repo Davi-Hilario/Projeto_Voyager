@@ -99,15 +99,18 @@
     <div class="telaSobreMim tela" id="sobreMim">
         <div class="container">
             <div class="area-foto">
-                
+
             </div>
             <div class="area-textoSobreMim">
                 <div class="container">
                     <h1>Sobre Mim</h1>
                     <p>
-                        Me chamo Davi Alexandre de Souza Hilário, atualmente cursando o 1° Ano do curso de Ciência da Computação na São Paulo Tech School.
+                        Me chamo Davi Alexandre de Souza Hilário, atualmente cursando o 1° Ano do curso de Ciência da
+                        Computação na São Paulo Tech School.
                         <br><br>
-                        Sempre fui muito interessado por temas espaciais e, por conta disso, desenvolvi a Voyager, o site que visa trazer informações interessantes sobre os planetas que compõe o nosso Sistema Solar!
+                        Sempre fui muito interessado por temas espaciais e, por conta disso, desenvolvi a Voyager, o
+                        site que visa trazer informações interessantes sobre os planetas que compõe o nosso Sistema
+                        Solar!
                     </p>
                 </div>
             </div>
@@ -173,11 +176,10 @@
             <div class="card-footer">
                 <h2>Acesso Rápido</h2>
                 <ul>
-                    <li>Home</li>
-                    <li>Sobre Nós</li>
-                    <li>Sistema Solar</li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="sistemaSolar.html">Sistema Solar</a></li>
                     <li><a href="login.html">Login</a></li>
-                    <li>Cadastro</li>
+                    <li><a href="cadastro.html">Cadastro</a></li>
                 </ul>
             </div>
         </div>
@@ -265,14 +267,14 @@
             }
         }
         respPlanetaFavorito.innerHTML =
-         `
+            `
             O planeta ${maiorPlaneta} foi o mais votado, tendo um total de ${maiorVoto}
-            votos (${((maiorVoto/soma)*100).toFixed(1)}% do total!<br>
+            votos (${((maiorVoto / soma) * 100).toFixed(1)}% do total!<br>
         `
         respPlanetaFavorito.innerHTML +=
-        `
+            `
             <br>O planeta ${menorPlaneta} foi o menos votado, tendo um total de ${menorVoto}
-            votos (${((menorVoto/soma)*100).toFixed()}% do total!
+            votos (${((menorVoto / soma) * 100).toFixed()}% do total!
         `
     }
 
