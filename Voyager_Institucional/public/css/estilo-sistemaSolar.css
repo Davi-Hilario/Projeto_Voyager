@@ -18,6 +18,56 @@
     font-size: 50px;
 }
 
+.tela .container{
+    justify-content: space-around;
+    align-items: center
+}
+
+.imagemAstro{
+    width: 45%;
+    height: 85%;
+    background-size: 70%;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-color: blue; */
+}
+.textoAstro{
+    width: 55%;
+    height: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-image: radial-gradient(rgb(47, 0, 78), rgb(87, 0, 145));
+    /* background-color: white; */
+    box-shadow: 5px 5px 50px rgb(109, 0, 211);
+    /* background-blend-mode: lighten; */
+    border-radius: 30px;
+    /* background-color: red; */
+    padding:10px;
+}
+
+
+
+.textoAstro p{
+    color: #E9E0F5;
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.textoAstro .destaque{
+    color: rgb(106, 0, 245);
+    font-weight: bold;
+}
+
+.textoAstro .titulo{
+    color: rgb(160, 0, 253);
+    font-size: 35px;
+    text-align: center;
+    font-weight: bolder;
+    letter-spacing: 5px;
+}
 /* Tela Footer */
 
 .telaFooter{
@@ -53,69 +103,53 @@
     color: #E9E0F5;
 }
 
-.formulario-contato{
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-color: #663892;
-    padding: 15px;
-    align-items: center;
-    border-radius: 10px;
-    font-size: 20px;
-}
-
-.formulario-contato .container{
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 2%;
-}
-
-.bloco-formulario{
-    width: 100%;
-}
-
-.formulario-contato .container textarea{
-    resize: none;
-    width: 100%;
-}
-.formulario-contato .container input{
-    width: 100%;
-    height: 35px;
-}
-
-.formulario-contato .btn{
-    width: 60%;
-    align-self: center;
-}
-
 /* Tela Sol       */
-
+.imagemSol{
+    background-image: url(../assets/img/sol.png);
+}
 
 /* Tela Mercúrio  */
-
+.imagemMercurio{
+    background-image: url(../assets/img/mercurio-removebg-preview.png);
+}
 
 /* Tela Vênus     */
-
+.imagemVenus{
+    background-image: url(../assets/img/imgVenus.png);
+}
 
 /* Tela Terra     */
-
+.imagemTerra{
+    background-image: url(../assets/img/terra.png);
+}
 
 /* Tela Lua       */
-
+.imagemLua{
+    background-image: url(../assets/img/lua.png);
+}
 
 /* Tela Marte     */
-
+.imagemMarte{
+    background-image: url(../assets/img/marte-removebg-preview.png);
+}
 
 /* Tela Júpiter   */
-
+.imagemJupiter{
+    background-image: url(../assets/img/jupiter.png);
+}
 
 /* Tela Saturno   */
-
+.imagemSaturno{
+    background-image: url(../assets/img/saturno.png);
+    background-size: 90%;
+}
 
 /* Tela Urano     */
-
+.imagemUrano{
+    background-image: url(../assets/img/urano-removebg-preview.png);
+}
 
 /* Tela Neturno   */
-
+.imagemNetuno{
+    background-image: url(../assets/img/netuno-removebg-preview.png);
+}
